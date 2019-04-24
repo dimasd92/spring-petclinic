@@ -13,6 +13,7 @@
     <version>2.1.3.RELEASE</version>
   </parent>
   <name>petclinic</name>
+  <packaging>war</packaging>
 
   <properties>
 
@@ -32,6 +33,8 @@
   </properties>
 
   <dependencies>
+
+
     <!-- Spring and Spring Boot dependencies -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -50,6 +53,11 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
@@ -58,6 +66,9 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+
+
+
 
     <!-- Databases - Uses HSQL by default -->
     <dependency>
@@ -120,7 +131,7 @@
             <!-- Spring Boot Actuator displays build-related information
               if a META-INF/build-info.properties file is present -->
             <goals>
-              <goal>build-info</goal>
+              <goal>repackage</goal>
             </goals>
             <configuration>
               <additionalProperties>
