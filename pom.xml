@@ -30,6 +30,18 @@
 
     <jacoco.version>0.8.2</jacoco.version>
 
+    <mysql-driver.version>8.0.11</mysql-driver.version>
+    <!--jpa.database>MYSQL</jpa.database>
+    <jdbc.driverClassName>com.mysql.cj.jdbc.Driver</jdbc.driverClassName>
+    <jdbc.url>jdbc:mysql:pd1r8v3ztv5njf4.cnqbbiasfrhx.us-west-2.rds.amazonaws.com:3306/petclinic?useUnicode=true</jdbc.url>
+    <jdbc.username>dima</jdbc.username>
+    <jdbc.password>dima92sd</jdbc.password
+
+    <tomcat-jdbc.version>7.0.42</tomcat-jdbc.version>
+		<ehcache.version>2.6.9</ehcache.version>
+		<hsqldb.version>2.3.2</hsqldb.version>
+    -->
+
   </properties>
 
   <dependencies>
