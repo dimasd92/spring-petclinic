@@ -52,7 +52,7 @@ The following items should be installed in your system:
   * [Spring Tools Suite](https://spring.io/tools) (STS)
   * IntelliJ IDEA
 
-### Steps:
+#### Steps:
 
 1) On the command line
 ```
