@@ -7,5 +7,6 @@ COPY target/spring-petclinic-2.1.0.BUILD-SNAPSHOT.war /usr/local/tomcat/webapps/
 ENV JAVA_OPTS=""
 EXPOSE 8080
 EXPOSE 8081
+EXPOSE 8082
 
 CMD ["catalina.sh", "run"]
