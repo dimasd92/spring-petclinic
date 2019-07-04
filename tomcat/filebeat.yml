@@ -1,0 +1,23 @@
+output.elasticsearch:
+  hosts:
+    - 172.17.0.1:5000
+  username: "elastic"
+  password: changeme
+setup.kibana:
+  host:
+    - 172.17.0.1:5601
+
+#output:
+#  logstash:
+#    enabled: true
+#    hosts:
+#      - 172.17.0.1:5000
+#    timeout: 15
+
+filebeat:
+  prospectors:
+    -
+      paths:
+        - /var/log/syslog
+        - /var/log/auth.log
+      document_type: syslog
