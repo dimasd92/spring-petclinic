@@ -21,6 +21,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
+import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
+import io.micrometer.core.instrument.MeterRegistry;
+import org.springframework.context.annotation.Bean;
+
+
+
+// import io.prometheus.client.spring.boot.EnablePrometheusEndpoint;
+// import io.prometheus.client.spring.boot.EnableSpringBootMetricsCollector;
+// import io.prometheus.client.Counter;
+// import io.prometheus.client.Histogram;
+
+
 /**
  * PetClinic Spring Boot Application.
  *
@@ -39,4 +51,34 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  		SpringApplication.run(PetClinicApplication.class, args);
  	}
 
+  @Bean
+  MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
+      return registry -> registry.config().commonTags("application", "SpringBootApplication");
+  }
+
+  //   GreetingWebClient gwc = new GreetingWebClient();
+  //   System.out.println(gwc.getResult(SpringBootApplication));
+  // }
+
  }
+
+
+
+
+
+
+// @SpringBootApplication
+// public class Application {
+//
+// 	@Bean
+// 	MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {
+//   		return registry -> registry.config().commonTags("application", "MYAPP");
+// 	}
+//
+// 	public static void main(String[] args) {
+// 		SpringApplication.run(Application.class, args);
+//
+// 		GreetingWebClient gwc = new GreetingWebClient();
+// 		System.out.println(gwc.getResult());
+// 	}
+// }
