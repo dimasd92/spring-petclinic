@@ -2,7 +2,7 @@ FROM tomcat:8.5.32-jre8
 
 COPY tomcat/context.xml /usr/local/tomcat/webapps/manager/META-INF/context.xml
 COPY tomcat/context.xml /usr/local/tomcat/webapps/host-manager/META-INF/context.xml
-COPY tomcat/tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
+# COPY tomcat/tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
 COPY tomcat/server.xml /usr/local/tomcat/conf/server.xml
 #COPY tomcat/tomcat-juli-8.5.32.jar /usr/local/tomcat/bin/tomcat-juli.jar
 COPY tomcat/logging.properties /usr/local/tomcat/conf/logging.properties
