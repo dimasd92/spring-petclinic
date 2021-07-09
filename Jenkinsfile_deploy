@@ -1,2 +1,4 @@
 @Library("jenkins-lib@main") _
-deploy()
+deploy([
+project: 'petclinic'
+])
