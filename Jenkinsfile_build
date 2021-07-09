@@ -1,6 +1,4 @@
-def call(Map pipelineParams){
-  @Library("jenkins-lib@main") _
-  build([
-  project: 'petclinic'
-  ])
-}
+@Library("jenkins-lib@main") _
+build([
+project: 'petclinic'
+])
