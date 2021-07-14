@@ -1,0 +1,32 @@
+app:
+  name: petclinic
+
+  service:
+    type: LoadBalancer
+    servicename: petclinic
+    port: 8080
+    path: /
+    healthPath: /
+
+  deployment:
+    SPRING_APPLICATION_NAME: petclinic
+    labels:
+      app: 'petclinic'
+    strategy:
+      type: RollingUpdate
+    replicas:
+      min: 1
+      max: 10
+    cpu_utilization: 800
+    mem_utilization: 400
+    spec:
+      resources:
+        requests:
+          memory: 300Mi
+          cpu: 0.1
+        limits:
+          memory: 600Mi
+          cpu: 0.5
+
+  # configmap:
+  #   data:
