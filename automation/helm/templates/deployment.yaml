@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app.name }}
+spec:
+  replicas: {{ .Values.app.deployment.replicas.min }}
+  selector:
+    matchLabels:
+      app: {{ .Values.app.name }}
+  strategy:
+    type: {{ .Values.app.deployment.strategy.type }}
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+{{ toYaml .Values.app.deployment.labels | indent 8 }}
+        environment: {{ .Values.app.configmap.data.ENV }}
+        uuid: '{{ uuidv4 }}'
+      annotations:
+        rollme: {{ randAlphaNum 5 | quote }}
+    spec:
+      containers:
+        - name: {{ .Values.app.name }}
+          image: {{ .Values.app.deployment.spec.image }}:{{ .Values.app.deployment.spec.version }}
+          imagePullPolicy: Always
+          envFrom:
+          - configMapRef:
+              name: {{ .Values.app.name }}
+          env:
+          - name: SPRING_APPLICATION_NAME
+            value: {{ .Values.app.deployment.SPRING_APPLICATION_NAME}}
+          - name: SERVER_PORT
+            value: '8080'
+          ports:
+            - containerPort: 8080
+          startupProbe:
+            httpGet:
+              path: {{ .Values.app.service.healthPath }}
+              port: {{ .Values.app.service.port }}
+              scheme: HTTP
+            initialDelaySeconds: 70
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.app.service.healthPath }}
+              port: {{ .Values.app.service.port }}
+              scheme: HTTP
+            initialDelaySeconds: 70
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: {{ .Values.app.service.healthPath }}
+              port: {{ .Values.app.service.port }}
+              scheme: HTTP
+            initialDelaySeconds: 70
+            periodSeconds: 5
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 10
+          resources:
+{{ toYaml .Values.app.deployment.spec.resources | indent 12 }}

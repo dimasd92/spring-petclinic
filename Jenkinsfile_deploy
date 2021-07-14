@@ -1,2 +1,0 @@
-@Library("jenkins-lib@main") _
-deploy()
